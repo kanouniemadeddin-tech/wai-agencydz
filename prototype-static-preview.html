@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAI — We Are Ideas · Creative Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0b0f;
+    --ink-2:#121218;
+    --paper:#f4f2ec;
+    --accent:#d8ff3e;
+    --accent-2:#8f7bff;
+    --muted:#9a9aa6;
+    --radius:18px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--ink);color:#fff;overflow-x:hidden}
+  .wrap{background:var(--ink);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--accent);color:var(--ink)}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+      padding:18px clamp(20px,5vw,64px);backdrop-filter:blur(14px);
+      background:rgba(11,11,15,.72);border-bottom:1px solid rgba(255,255,255,.08)}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.5rem;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.6}}
+  .nav-links{display:flex;gap:32px;font-size:.9rem;color:var(--muted)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  .btn{font-family:var(--font-display);font-weight:600;font-size:.9rem;padding:10px 22px;border-radius:999px;
+       background:var(--accent);color:var(--ink);border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;display:inline-block}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(216,255,62,.25)}
+  .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);box-shadow:none}
+  @media(max-width:680px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:clamp(70px,10vw,130px) clamp(20px,5vw,64px) clamp(60px,7vw,100px);overflow:hidden}
+  .hero-bg{position:absolute;inset:0;pointer-events:none}
+  .hero-bg .glow{position:absolute;width:60vw;height:60vw;border-radius:50%;filter:blur(120px);opacity:.22}
+  .glow-1{background:var(--accent-2);top:-25vw;right:-18vw}
+  .glow-2{background:var(--accent);bottom:-30vw;left:-20vw;opacity:.08}
+  .hero .inner{position:relative;max-width:1200px;margin:0 auto}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+           color:var(--accent);border:1px solid rgba(216,255,62,.3);border-radius:999px;padding:8px 16px;margin-bottom:28px}
+  h1{font-family:var(--font-display);font-weight:700;letter-spacing:-.04em;line-height:.98;
+     font-size:clamp(3rem,9.5vw,8.5rem)}
+  h1 .accent{color:var(--accent)}
+  h1 .outline{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.65)}
+  .hero p{max-width:560px;color:var(--muted);font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.7;margin:30px 0 38px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-meta{display:flex;gap:clamp(24px,5vw,72px);margin-top:clamp(48px,6vw,84px);flex-wrap:wrap}
+  .hero-meta div strong{display:block;font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em}
+  .hero-meta div span{color:var(--muted);font-size:.85rem}
+  .scroll-hint{position:absolute;right:clamp(20px,5vw,64px);bottom:24px;color:var(--muted);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);
+           overflow:hidden;padding:18px 0;background:var(--ink-2)}
+  .marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 28s linear infinite;
+                 font-family:var(--font-display);font-size:1rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+  .marquee-track span{display:flex;align-items:center;gap:64px}
+  .marquee-track span::after{content:'✦';color:var(--accent);font-size:.8rem}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(70px,9vw,120px) clamp(20px,5vw,64px)}
+  .section-head{max-width:1200px;margin:0 auto clamp(40px,5vw,64px)}
+  .section-head .tag{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:block}
+  h2{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-size:clamp(2rem,4.5vw,3.6rem)}
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .card{background:var(--ink-2);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);
+        padding:34px 28px;transition:transform .25s,border-color .25s,background .25s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-6px);border-color:rgba(216,255,62,.4)}
+  .card .num{font-family:var(--font-display);color:var(--muted);font-size:.85rem;margin-bottom:44px;display:block}
+  .card h3{font-family:var(--font-display);font-size:1.3rem;letter-spacing:-.01em;margin-bottom:12px}
+  .card p{color:var(--muted);font-size:.92rem;line-height:1.65}
+  .card .icon{position:absolute;top:28px;right:26px;font-size:1.4rem;opacity:.9}
+  .card::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent);transition:width .35s}
+  .card:hover::after{width:100%}
+
+  /* ---------- WORK ---------- */
+  .work-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .work{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;cursor:pointer;border:1px solid rgba(255,255,255,.08)}
+  .work .visual{position:absolute;inset:0;transition:transform .5s}
+  .work:hover .visual{transform:scale(1.05)}
+  .work .info{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(11,11,15,.92) 55%)}
+  .work .info small{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.7rem}
+  .work .info h3{font-family:var(--font-display);font-size:1.35rem;margin-top:8px}
+  .work.wide{grid-column:span 2;aspect-ratio:16/8}
+  .visual-1{background:linear-gradient(135deg,#3b2d7a,#8f7bff 60%,#d8ff3e)}
+  .visual-2{background:radial-gradient(circle at 30% 20%,#d8ff3e,#2a6e2a 70%)}
+  .visual-3{background:linear-gradient(160deg,#0e3a3a,#37d6b0)}
+  .visual-4{background:linear-gradient(120deg,#5a1a3a,#ff5e8a 80%)}
+  .visual .pattern{position:absolute;inset:0;opacity:.18;
+    background-image:repeating-linear-gradient(45deg,transparent 0 22px,rgba(255,255,255,.5) 22px 23px)}
+  @media(max-width:680px){.work-grid{grid-template-columns:1fr}.work.wide{grid-column:span 1;aspect-ratio:4/3}}
+
+  /* ---------- STATS ---------- */
+  .stats{background:var(--accent);color:var(--ink)}
+  .stats .inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;text-align:center}
+  .stats strong{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.03em;display:block}
+  .stats span{font-size:.9rem;font-weight:500}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .quote-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .quote{background:var(--ink-2);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:34px}
+  .quote p{font-size:1.05rem;line-height:1.7;color:#e8e8ee}
+  .quote .who{margin-top:26px;display:flex;align-items:center;gap:14px}
+  .avatar{width:44px;height:44px;border-radius:50%;flex-shrink:0}
+  .who b{display:block;font-size:.95rem}
+  .who span{color:var(--muted);font-size:.82rem}
+
+  /* ---------- CTA ---------- */
+  .cta{max-width:1200px;margin:0 auto;border-radius:24px;background:var(--ink-2);
+       border:1px solid rgba(255,255,255,.1);padding:clamp(44px,6vw,90px) clamp(28px,5vw,80px);text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:'';position:absolute;width:40vw;height:40vw;border-radius:50%;background:var(--accent-2);filter:blur(120px);opacity:.25;top:-20vw;left:30%}
+  .cta h2{position:relative}
+  .cta p{position:relative;color:var(--muted);max-width:520px;margin:20px auto 34px;line-height:1.7}
+  .cta .btn{position:relative}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid rgba(255,255,255,.08);padding:56px clamp(20px,5vw,64px) 32px;background:var(--ink-2)}
+  .foot{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+  .foot .links{display:flex;gap:28px;color:var(--muted);font-size:.9rem}
+  .foot .links a:hover{color:var(--accent)}
+  .copyright{max-width:1200px;margin:40px auto 0;color:#55555f;font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a href="#" class="logo"><span class="dot"></span>WAI<span style="color:var(--accent)">.</span></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#voices">Clients</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn" href="#contact">Start a project</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg"><div class="glow glow-1"></div><div class="glow glow-2"></div></div>
+    <div class="inner">
+      <span class="eyebrow">● Available for new projects</span>
+      <h1>WE ARE<br><span class="accent">IDEAS</span><br><span class="outline">IN MOTION</span></h1>
+      <p>WAI is a creative agency for brands that refuse to blend in. Strategy, design and technology — fused into work that moves people and markets.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#work">See our work</a>
+        <a class="btn btn-ghost" href="#services">What we do</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>12+</strong><span>Years creating</span></div>
+        <div><strong>240</strong><span>Projects shipped</span></div>
+        <div><strong>38</strong><span>Industry awards</span></div>
+        <div><strong>9</strong><span>Countries served</span></div>
+      </div>
+    </div>
+    <span class="scroll-hint">Scroll ↓</span>
+  </header>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Nova Bank<span></span></span><span>Aurelia</span><span>Kite Studio</span><span>Vertex Labs</span><span>Orbit Coffee</span><span>Fjord &amp; Co</span><span>Pulse Fitness</span><span>Meridian</span>
+      <span>Nova Bank</span><span>Aurelia</span><span>Kite Studio</span><span>Vertex Labs</span><span>Orbit Coffee</span><span>Fjord &amp; Co</span><span>Pulse Fitness</span><span>Meridian</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="section-head">
+      <span class="tag">Services</span>
+      <h2>Everything a brand needs<br>to be impossible to ignore.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="card"><span class="num">/ 01</span><span class="icon">✺</span>
+        <h3>Brand Identity</h3>
+        <p>Naming, strategy, visual systems and guidelines that give your brand a voice you can't unhear.</p></div>
+      <div class="card"><span class="num">/ 02</span><span class="icon">◐</span>
+        <h3>Digital Product</h3>
+        <p>UX, UI and design systems for web and mobile — researched, prototyped and pixel-perfected.</p></div>
+      <div class="card"><span class="num">/ 03</span><span class="icon">▶</span>
+        <h3>Motion &amp; Film</h3>
+        <p>Brand films, 3D and motion design that make campaigns breathe across every screen.</p></div>
+      <div class="card"><span class="num">/ 04</span><span class="icon">⌘</span>
+        <h3>Web Development</h3>
+        <p>Fast, accessible, scalable builds — from marketing sites to full platforms, engineered to last.</p></div>
+    </div>
+  </section>
+
+  <section id="work" style="background:var(--ink-2)">
+    <div class="section-head">
+      <span class="tag">Selected work</span>
+      <h2>Recent projects,<br>zero filler.</h2>
+    </div>
+    <div class="work-grid">
+      <a class="work wide" href="#contact">
+        <div class="visual visual-1"><div class="pattern"></div></div>
+        <div class="info"><small>Branding · Web</small><h3>Aurelia — a fintech reborn</h3></div>
+      </a>
+      <a class="work" href="#contact">
+        <div class="visual visual-2"><div class="pattern"></div></div>
+        <div class="info"><small>Campaign</small><h3>Orbit Coffee — Grounded</h3></div>
+      </a>
+      <a class="work" href="#contact">
+        <div class="visual visual-3"><div class="pattern"></div></div>
+        <div class="info"><small>Product design</small><h3>Kite Studio — App</h3></div>
+      </a>
+      <a class="work" href="#contact">
+        <div class="visual visual-4"><div class="pattern"></div></div>
+        <div class="info"><small>Motion</small><h3>Pulse — Launch film</h3></div>
+      </a>
+      <a class="work" href="#contact">
+        <div class="visual visual-1" style="background:linear-gradient(140deg,#1c1c2e,#6c5cff)"><div class="pattern"></div></div>
+        <div class="info"><small>Identity</small><h3>Vertex Labs — Rebrand</h3></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="inner">
+      <div><strong>97%</strong><span>Client retention</span></div>
+      <div><strong>4.9★</strong><span>Average review</span></div>
+      <div><strong>3.2×</strong><span>Avg. conversion lift</span></div>
+      <div><strong>6 wks</strong><span>Typical first launch</span></div>
+    </div>
+  </section>
+
+  <section id="voices">
+    <div class="section-head">
+      <span class="tag">Client voices</span>
+      <h2>Don't take our word for it.</h2>
+    </div>
+    <div class="quote-grid">
+      <div class="quote">
+        <p>"WAI rebuilt our brand from the bones out. Six months later our signups had tripled and investors finally understood what we do."</p>
+        <div class="who"><div class="avatar" style="background:linear-gradient(135deg,#8f7bff,#d8ff3e)"></div>
+          <div><b>Lena Ortiz</b><span>CEO, Aurelia</span></div></div>
+      </div>
+      <div class="quote">
+        <p>"The rare agency that argues with you when you're wrong — and is usually right. Best creative partner we've had in a decade."</p>
+        <div class="who"><div class="avatar" style="background:linear-gradient(135deg,#37d6b0,#0e3a3a)"></div>
+          <div><b>Marcus Feld</b><span>CMO, Orbit Coffee</span></div></div>
+      </div>
+      <div class="quote">
+        <p>"From kickoff to launch in seven weeks. The site didn't just look good — it cut our support tickets nearly in half."</p>
+        <div class="who"><div class="avatar" style="background:linear-gradient(135deg,#ff5e8a,#5a1a3a)"></div>
+          <div><b>Priya Nair</b><span>Founder, Pulse Fitness</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="cta">
+      <h2>Got an idea?<br><span style="color:var(--accent)">Let's make it WAI.</span></h2>
+      <p>Tell us where you want to go. We'll bring the map, the crew and the loud music.</p>
+      <a class="btn" href="mailto:hello@wai.agency">hello@wai.agency</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <a href="#" class="logo"><span class="dot"></span>WAI<span style="color:var(--accent)">.</span></a>
+      <div class="links">
+        <a href="#services">Services</a><a href="#work">Work</a><a href="#voices">Clients</a><a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 WAI Agency — We Are Ideas. All rights reserved.</span>
+      <span>Amsterdam · Lisbon · Remote everywhere</span>
+    </div>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect();
+      c.style.setProperty('--x',e.clientX-r.left+'px');
+    });
+  });
+</script>
+</body>
+</html>
